@@ -16,5 +16,4 @@ module "vpc" {
   tags = {
     Environment = "staging"
   }
-
 }
