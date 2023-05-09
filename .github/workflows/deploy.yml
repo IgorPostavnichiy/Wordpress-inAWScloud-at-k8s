@@ -1,14 +1,14 @@
 name: "Terraform"
 
-on: push
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   terraform:
     name: "Terraform"
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: terraform-aws-eks
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -34,11 +34,7 @@ jobs:
      - name: Terraform Plan
        id: plan
        run: terraform plan -no-color
-
      - name: Terraform Apply
-       if: "!contains(github.event.head_commit.message, 'destroy')"
        run: terraform apply -auto-approve
-
      - name: Terraform Destroy
-       if: contains(github.event.head_commit.message, 'destroy')
        run: terraform destroy -auto-approve
