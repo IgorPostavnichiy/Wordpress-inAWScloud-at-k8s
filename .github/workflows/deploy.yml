@@ -3,8 +3,8 @@ name: "Terraform"
 on:
   push:
     paths:
-    - 'terraform_aws/**'
-    - '.github/workflows/terraform.yml'
+    - 'terraform-aws-eks/**'
+    - '.github/workflows/deploy.yml'
     branches:
     - main
   workflow_dispatch:
@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: terraform_aws
+        working-directory: terraform-aws-eks
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
