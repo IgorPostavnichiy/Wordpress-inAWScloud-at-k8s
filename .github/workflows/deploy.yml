@@ -1,13 +1,6 @@
 name: "Terraform"
 
-on:
-  push:
-    paths:
-    - 'terraform-aws-eks/**'
-    - '.github/workflows/deploy.yml'
-    branches:
-    - master
-  workflow_dispatch:
+on: push
 
 jobs:
   terraform:
