@@ -29,9 +29,9 @@ jobs:
          terraform_version: 1.3.9
          terraform_wrapper: false
      
-     - name: Terraform Format
-       id: fmt
-       run: terraform fmt
+    #  - name: Terraform Format
+    #    id: fmt
+    #    run: terraform fmt
        
 
      - name: Terraform Init
