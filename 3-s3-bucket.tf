@@ -1,6 +1,6 @@
 # Create an S3 bucket
 resource "aws_s3_bucket" "mybucket" {
-  bucket = "eks-bucket-igorpost"
+  bucket = "eks-bucket-test"
 }
 
 # Create an IAM policy that allows access to the S3 bucket
