@@ -1,28 +1,28 @@
 # Create an S3 bucket
 resource "aws_s3_bucket" "igor-bucket-test1" {
-  bucket = "eks-bucket-test1"
+  bucket = "eks-bucket-testmysprout1"
 }
 
 # Create an IAM policy that allows access to the S3 bucket
-resource "aws_iam_policy" "s3_policy" {
-  name = "my-eks-s3-policy"
+# resource "aws_iam_policy" "s3_policy" {
+#   name = "my-eks-s3-policy"
 
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Action = [
-          "s3:Get*",
-          "s3:List*",
-          "s3:Put*",
-          "s3:Delete*"
-        ]
-        Effect   = "Allow"
-        Resource = "${aws_s3_bucket.igor-bucket-test1.arn}/*"
-      }
-    ]
-  })
-}
+#   policy = jsonencode({
+#     Version = "2012-10-17"
+#     Statement = [
+#       {
+#         Action = [
+#           "s3:Get*",
+#           "s3:List*",
+#           "s3:Put*",
+#           "s3:Delete*"
+#         ]
+#         Effect   = "Allow"
+#         Resource = "${aws_s3_bucket.igor-bucket-test1.arn}/*"
+#       }
+#     ]
+#   })
+# }
 
 # Create an IAM role that can assume the EKS worker node role
 resource "aws_iam_role" "worker_role" {
