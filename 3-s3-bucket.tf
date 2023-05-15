@@ -42,10 +42,10 @@ resource "aws_s3_bucket" "igor-bucket-test1" {
 # }
 
 #Attach the S3 policy to the IAM role
-resource "aws_iam_role_policy_attachment" "worker_role_policy" {
-  policy_arn = aws_iam_policy.s3_policy.arn
-  role       = aws_iam_role.worker_role.name
-}
+# resource "aws_iam_role_policy_attachment" "worker_role_policy" {
+#   policy_arn = aws_iam_policy.s3_policy.arn
+#   role       = aws_iam_role.worker_role.name
+# }
 
 
 # Output the S3 bucket name and ARN
