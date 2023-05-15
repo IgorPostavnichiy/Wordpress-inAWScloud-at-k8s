@@ -1,6 +1,6 @@
 # Create an S3 bucket
-resource "aws_s3_bucket" "mybucket" {
-  bucket = "eks-bucket-test"
+resource "aws_s3_bucket" "igor-bucket-test1" {
+  bucket = "eks-bucket-test1"
 }
 
 # Create an IAM policy that allows access to the S3 bucket
@@ -18,7 +18,7 @@ resource "aws_iam_policy" "s3_policy" {
           "s3:Delete*"
         ]
         Effect   = "Allow"
-        Resource = "${aws_s3_bucket.mybucket.arn}/*"
+        Resource = "${aws_s3_bucket.igor-bucket-test1.arn}/*"
       }
     ]
   })
@@ -50,9 +50,9 @@ resource "aws_iam_role_policy_attachment" "worker_role_policy" {
 
 # Output the S3 bucket name and ARN
 output "s3_bucket_name" {
-  value = aws_s3_bucket.mybucket.bucket
+  value = aws_s3_bucket.igor-bucket-test1.bucket
 }
 
 output "s3_bucket_arn" {
-  value = aws_s3_bucket.mybucket.arn
+  value = aws_s3_bucket.igor-bucket-test1.arn
 }
