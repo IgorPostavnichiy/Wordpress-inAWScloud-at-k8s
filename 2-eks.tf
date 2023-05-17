@@ -26,3 +26,4 @@ resource "aws_launch_configuration" "example-eks-node" {
   image_id                = "ami-09bd96b2e49b45f16"
   instance_type           = "t2.micro"
 }
+
