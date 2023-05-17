@@ -13,6 +13,9 @@ module "eks" {
 
   enable_irsa = true
 
+  create_kms_key            = false
+  cluster_encryption_config = {}  
+
   eks_managed_node_group_defaults = {
     disk_size = 50
   }
