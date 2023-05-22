@@ -13,6 +13,9 @@ jobs:
   terraform-CI:
     name: "terraform-CI"
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: terraform-aws-eks
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
