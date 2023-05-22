@@ -9,7 +9,7 @@ on:
     - master
   workflow_dispatch:
 
-# jobs:
+  jobs:
 #   terraform-CI:
 #     name: "terraform-CI"
 #     runs-on: ubuntu-latest
