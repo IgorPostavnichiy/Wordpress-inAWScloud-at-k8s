@@ -3,7 +3,7 @@ name: "Deploy K8S with AWS"
 on:
   push:
     paths:
-    - 'terraform-aws-eks-ci-cd/**' 
+    - 'terraform-aws-eks/**' 
     - '.github/workflows/deploy.yml'
     branches:
     - master
