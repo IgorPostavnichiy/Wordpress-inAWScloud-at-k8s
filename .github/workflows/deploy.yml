@@ -90,9 +90,6 @@ jobs:
       - name: Wait for 80 seconds()
         run: sleep 80s
 
-      - name: Check Mysql Pods
-        run: kubectl exec -i $(kubectl get pod -l "app=mysql" -o jsonpath='{.items[0].metadata.name}') -- mysql -u root -p1234 -e "SHOW DATABASES;"
-
       - name: Create DB/Tables
         env:
           SCRIPT_DIR: ${{ github.workspace }}/terraform-aws-eks/scripts
@@ -107,17 +104,5 @@ jobs:
       - name: Wait for 10 seconds()
         run: sleep 10s
 
-      - name: Check Services/Pods/Deployments after Delete
-        run: echo "This is Services" && kubectl get service && echo "This is PODS" &&kubectl get pods  && echo "This is Deployments" && kubectl get  deployment
-
       - name: Apply Kubernetes manifest after Delete
         run: kubectl apply -f mysql.yml
-
-      - name: Wait for 80 seconds()
-        run: sleep 80s
-
-      - name: Check Services/Pods/Deployments after repeated Deploy
-        run: echo "This is Services" && kubectl get service && echo "This is PODS" &&kubectl get pods  && echo "This is Deployments" && kubectl get  deployment
-
-      - name: Check Mysql Pods after repeated Deploy
-        run: kubectl exec -i $(kubectl get pod -l "app=mysql" -o jsonpath='{.items[0].metadata.name}') -- mysql -u root -p1234 -e "SHOW DATABASES;"
