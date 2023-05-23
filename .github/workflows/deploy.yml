@@ -51,6 +51,9 @@ jobs:
         if: contains(github.event.head_commit.message, 'destroy')
         run: terraform destroy -auto-approve -lock=false
 
+      - name: Print CI status message
+        run: echo "CI pipeline part finished successfully!" 
+
   terraform-CD:
       needs: 
         - terraform-CI
@@ -81,28 +84,14 @@ jobs:
       - name: Get Kubeconfig
         run: aws eks update-kubeconfig --region eu-north-1 --name igor-cluster-eks
 
-      - name: Check Services/Pods/Deployment Before Deploy
-        run: echo "This is Services" && kubectl get service && echo "This is PODS" &&kubectl get pods  && echo "This is Deployments" && kubectl get  deployment
-
       - name: Apply Kubernetes manifest
         run: kubectl apply -f mysql.yml
 
-      - name: Wait for 80 seconds()
-        run: sleep 80s
-
-      - name: Create DB/Tables
-        env:
-          SCRIPT_DIR: ${{ github.workspace }}/terraform-aws-eks/scripts
-        run: bash $SCRIPT_DIR/mysql.sh
-
-      - name: Wait for 20 seconds()
+      - name: Wait for 15 seconds()
         run: sleep 20s
 
-      - name: Delete Mysql
-        run: kubectl delete service mysql && kubectl delete pods --selector app=mysql && kubectl delete deployment mysql
-
-      - name: Wait for 10 seconds()
-        run: sleep 10s
-
-      - name: Apply Kubernetes manifest after Delete
-        run: kubectl apply -f mysql.yml
+      - name: Check Service
+        run: kubectl get service
+      
+      - name: Print CD status message
+        run: echo "CD pipeline part finished successfully!" 
