@@ -55,8 +55,8 @@ jobs:
   #       run: echo "CI pipeline part finished successfully!" 
 
   terraform-CD:
-      needs: 
-        - terraform-CI
+      # needs: 
+      #   - terraform-CI
       if: "!contains(github.event.head_commit.message, 'destroy') "
       runs-on: ubuntu-latest
       defaults:
