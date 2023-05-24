@@ -92,6 +92,9 @@ jobs:
 
       - name: Check Service
         run: kubectl get service
+
+      - name: Terraform Destroy
+        run: terraform destroy -auto-approve -lock=false
       
       - name: Print CD status message
         run: echo "CD pipeline part finished successfully!"
