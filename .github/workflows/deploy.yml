@@ -75,7 +75,7 @@ jobs:
           chmod +x kubectl
           sudo mv kubectl /usr/local/bin/
   
-      - name: Kubeconfig
+      - name: Get Kubeconfig
         run: aws eks update-kubeconfig --region eu-north-1 --name igor-cluster-eks
 
       - name: Apply Kubernetes manifest
