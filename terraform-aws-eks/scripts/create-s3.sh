@@ -1,6 +1,6 @@
 #!/bin/bash
 
-bucket_name="s3-bucket-test-itsprout"
+bucket_name="bucket-s3-itsprout"
 region="eu-north-1"
 
 aws s3api create-bucket --bucket "$bucket_name" --region "$region" --create-bucket-configuration LocationConstraint="$region"

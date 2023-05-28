@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket         = "s3-bucket-test-itsprout"  
+    bucket         = "bucket-s3-itsprout"  
     key            = "terraform.tfstate"   
     region         = "eu-north-1"           
     encrypt        = true                  
