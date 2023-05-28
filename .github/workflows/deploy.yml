@@ -30,6 +30,11 @@ jobs:
         with:
           terraform_version: latest
           terraform_wrapper: false
+
+      - name: Create bucket if dosn't exists
+        env:
+         SCRIPT_DIR: ${{ github.workspace }}/terraform-aws-eks/scripts
+        run: bash  $SCRIPT_DIR/create-s3.sh
       
       - name: Terraform Init
         id: init
@@ -55,10 +60,6 @@ jobs:
       defaults:
         run:
           working-directory: terraform-aws-eks
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: ${{ secrets.AWS_REGION }}
 
       steps:
       - name: Clon Rep
@@ -74,14 +75,33 @@ jobs:
           chmod +x kubectl
           sudo mv kubectl /usr/local/bin/
   
-      - name: Get Kubeconfig
+      - name: Kubeconfig
         run: aws eks update-kubeconfig --region eu-north-1 --name igor-cluster-eks
 
       - name: Apply Kubernetes manifest
         run: kubectl apply -f mysql.yml
 
-      - name: Wait for 15 seconds()
+      - name: Wait for 80 seconds()
+        run: sleep 80s
+
+      - name: Check Mysql Pods
+        run: kubectl exec -i $(kubectl get pod -l "app=mysql" -o jsonpath='{.items[0].metadata.name}') -- mysql -u root -p1234 -e "SHOW DATABASES;"
+
+      - name: Create DB/Tables
+        env:
+          SCRIPT_DIR: ${{ github.workspace }}/terraform-aws-eks/scripts
+        run: bash  $SCRIPT_DIR/mysql.sh
+
+      - name: Wait for 20 seconds()
         run: sleep 20s
 
-      - name: Check Service
-        run: kubectl get service
+      - name: Delete Mysql
+        run: kubectl delete service mysql && kubectl delete pods --selector app=mysql && kubectl delete deployment mysql
+
+      - name: Wait for 20 seconds()
+        run: sleep 20s
+
+      - name: Apply Kubernetes manifest after Delete
+        run: kubectl apply -f mysql.yml
+
+   
