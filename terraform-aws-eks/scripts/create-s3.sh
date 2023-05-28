@@ -2,7 +2,9 @@
 
 bucket_name="s3-bucket-test-itsprout"
 
-aws s3api head-bucket --bucket "$bucket_name"  2>/dev/null
+# aws s3api head-bucket --bucket "$bucket_name"  2>/dev/null
+aws s3api create-bucket --bucket "$bucket_name" --region eu-north-1 2>/dev/null
+
 
 if [[ $? -eq 0 ]]; then
   echo "Bucket $bucket_name alredy exist."
