@@ -6,7 +6,7 @@ on:
   #   - 'terraform-aws-eks/**' 
   #   - '.github/workflows/deploy.yml'
   #   branches:
-  #   - master
+  #   - main
   workflow_dispatch:
 
 jobs:
