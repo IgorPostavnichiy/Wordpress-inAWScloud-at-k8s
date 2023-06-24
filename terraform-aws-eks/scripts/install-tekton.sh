@@ -26,11 +26,11 @@ kubectl apply --filename https://storage.googleapis.com/tekton-releases/triggers
 echo "6 ----- >Install Tekton Operators"
 kubectl apply -f https://storage.googleapis.com/tekton-releases/operator/latest/release.yaml
 
-cat > regsecret.yaml << EOM
+cat > secret.yaml << EOM
 kind: Secret
 apiVersion: v1
 metadata:
-  name: regsecret
+  name: secret
   annotations:
     tekton.dev/docker-0: https://index.docker.io/
 type: kubernetes.io/basic-auth
@@ -39,7 +39,7 @@ stringData:
     password: $DOCKER_PASSWORD
 EOM
 
-kubectl apply -f regsecret.yaml
+kubectl apply -f secret.yaml
 
 echo "apply -f pipeline/"
 kubectl apply -f pipeline/
