@@ -27,8 +27,7 @@ else
       --url=it-sproutdevteam.fun  \
       --title=WPsite \
       --admin_user=igorpost \  
-      --admin_password=1991test \ 
-      --admin_password=monakh3108d \ 
+      --admin_password=1991test \  
       --admin_email=igorpostavnichiy@gmail.com && \ #
     wp --allow-root --path=/var/www/html plugin install contact-form-7 --activate && \
     wp --allow-root --path=/var/www/html theme install twentytwentytwo  && \
