@@ -14,11 +14,22 @@ module "eks" {
   enable_irsa = true
 
   create_kms_key            = false
+  eks_managed_node_groups = {
+  main = {
+      min_size     = 2
+      max_size     = 10
+      desired_size = 2
+
+    instance_type = "t3.medium"
+    capacity_type = "SPOT"
+    }
+  }
   cluster_encryption_config = {}  
   
-  eks_managed_node_group_defaults = {
-    disk_size = 50
-  }
+}
+
+resource "aws_route53_zone" "dns" {
+  name     = "it-sproutdevteam.fun"
 }
 
 resource "aws_launch_configuration" "example-eks-node" {
