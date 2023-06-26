@@ -48,7 +48,6 @@ done
 echo "Wait 1 minute"
 sleep 60 
 
-
 # Get a list of network interface IDs associated with all security groups
 interface_ids=$(aws ec2 describe-network-interfaces --query 'NetworkInterfaces[].NetworkInterfaceId' --output text)
 # Disable network interfaces from EC2 instances
