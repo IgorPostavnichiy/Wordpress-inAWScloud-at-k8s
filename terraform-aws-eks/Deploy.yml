@@ -139,13 +139,13 @@ spec:
           image: wordpress:latest
           env:
             - name: WORDPRESS_DB_HOST
-              value: "mysql"
+              value: "mysql"     # Replace with you value.
             - name: WORDPRESS_DB_NAME
-              value: "WordPress"
+              value: "WordPress" # Replace with you value.
             - name: WORDPRESS_DB_USER
-              value: "root"
+              value: "root"      # Replace with you value.
             - name: WORDPRESS_DB_PASSWORD
-              value: "wordsec" # Replace with you dbpass.
+              value: "wordsec"   # Replace with you value.
           ports:
             - containerPort: 80
           volumeMounts:
